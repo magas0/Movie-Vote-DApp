@@ -1,5 +1,6 @@
 import React, { Component } from 'react';
 import Web3 from 'web3';
+// This abi was pulled from the https://parity.io/ client after compiling Voting.sol
 import abi from './abi.json';
 import './App.css';
 
@@ -17,8 +18,6 @@ class App extends Component {
     super(props);
 
     this.state = {
-      blockNumber: web3.eth.blockNumber,
-      ...deployedContract,
       movies: [
         { name: 'Baby Driver', id: 1, votes: 0, image: 'images/movie1.jpg'},
         { name: 'Wonder Woman', id: 2, votes: 0, image: 'images/movie2.jpg'},
@@ -109,7 +108,8 @@ class App extends Component {
               <br /><br />
               Blockchain Actions
               <div className="block-transactions">
-                {this.state.transactions.map( (tx, index) =>
+                {
+                  this.state.transactions.map( (tx, index) =>
                     <div key={index}>{tx}</div>
                   )
                 }
